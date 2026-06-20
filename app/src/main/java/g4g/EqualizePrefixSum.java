@@ -19,14 +19,25 @@ public class EqualizePrefixSum {
         ArrayList<Integer> result = new ArrayList<>();
         result.add(0); // single entry is always equal
 
+        long[] prefixSum = new long[arr.length];
+        prefixSum[0] = arr[0];
         for (int i = 1; i < arr.length; i++) {
-            int ops = 0;
-            int medianIdx = (0 + i) / 2;
+            prefixSum[i] = prefixSum[i - 1] + arr[i];
+        }
+
+        for (int i = 1; i < arr.length; i++) {
+            int medianIdx = i / 2;
             int median = arr[medianIdx];
-            for (int j = 0; j <= i; j++) {
-                ops += Math.abs(arr[j] - median);
-            }
-            result.add(ops);
+
+            long leftSum = medianIdx > 0 ? prefixSum[medianIdx - 1] : 0;
+            int leftCount = medianIdx;
+
+            long rightSum = prefixSum[i] - leftSum;
+            int totalElements = i + 1;
+            int rightCount = totalElements - medianIdx;
+
+            long ops = ((leftCount * median) - leftSum) + (rightSum - (rightCount * median));
+            result.add((int) ops);
         }
         return result;
     }
