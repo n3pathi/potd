@@ -8,13 +8,16 @@ import java.math.BigInteger;
 public class LastDigit {
     public int getLastDigit(String a, String b) {
         int lastDigit = lastDigit(a.toCharArray());
-        BigInteger bigB = new BigInteger(b);
 
-        if(lastDigit == 0 && bigB.compareTo(BigInteger.ZERO)==0){
-            throw new ArithmeticException();
+        BigInteger bigB = new BigInteger(b);
+        if (a.length() == 1 && lastDigit == 0 && bigB.signum() <= 0) {
+            throw new ArithmeticException("0^0 is not defined");
+        }
+        if (bigB.signum() <= 0) {
+            throw new IllegalArgumentException("Exponent must be a positive integer");
         }
         int numCycle = getNumCycle(lastDigit);
-        int rem = bigB.mod(BigInteger.valueOf(numCycle)).intValue();
+        int rem = bigB.remainder(BigInteger.valueOf(numCycle)).intValue();
         return getLastDigitAtPosition(lastDigit, rem);
     }
 

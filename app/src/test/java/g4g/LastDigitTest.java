@@ -32,4 +32,9 @@ class LastDigitTest {
     void testLastDigitWithZero() {
         assertThrowsExactly(ArithmeticException.class, () -> lastDigit.getLastDigit("0", "0"));
     }
+
+    @Test
+    void testWithNegativeExponent() {
+        assertThrowsExactly(IllegalArgumentException.class, () -> lastDigit.getLastDigit("-1", "-1"));
+    }
 }
