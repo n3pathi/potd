@@ -32,7 +32,7 @@ public class RatMaze {
         
         PriorityQueue<Node> queue = new PriorityQueue<>(comparingInt((Node o) -> o.col)
                 .thenComparingInt(o -> o.row));
-        queue.offer(new Node(0, 0, 0, null));
+        queue.offer(new Node(0, 0, null));
         boolean[][] visited = new boolean[n][m];
         visited[0][0] = true;
         while (!queue.isEmpty()) {
@@ -47,7 +47,7 @@ public class RatMaze {
                 for (int j = cur.col; j < m; j++) {
                     int dist = (i - cur.row) + (j - cur.col);
                     if (dist <= reachability && !visited[i][j] && mat[i][j] > 0) {
-                        queue.offer(new Node(i, j, dist, cur));
+                        queue.offer(new Node(i, j, cur));
                     }
                 }
             }
@@ -71,6 +71,6 @@ public class RatMaze {
         return res;
     }
     
-    private static record Node(int row, int col, int dist, Node from) {
+    private static record Node(int row, int col, Node from) {
     }
 }
