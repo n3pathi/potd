@@ -1,16 +1,11 @@
 package g4g;
 
-import java.util.Arrays;
-
 public class CountMatchingSubsequences {
     public static int countWays(String s1, String s2) {
         if (null == s1 || null == s2) {
             return 0;
         }
         int n = s1.length();
-        if (n == 0) {
-            return 0;
-        }
         int m = s2.length();
         int[] dp = new int[m + 1];
         dp[0] = 1;
@@ -22,7 +17,6 @@ public class CountMatchingSubsequences {
                 }
             }
         }
-        System.out.println(Arrays.toString(dp));
         return dp[m];
     }
 }
