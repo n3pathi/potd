@@ -1,4 +1,4 @@
-package leetcode;
+package lc;
 
 /**
  * You are given a string moves consisting of the characters 'U', 'D', 'L', 'R', and '_'.

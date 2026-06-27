@@ -1,4 +1,4 @@
-package leetcode;
+package lc;
 
 /**
  * You are given an integer array nums and an integer digit x.
